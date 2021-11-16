@@ -21,8 +21,8 @@ public class StyleServiceImpl implements IStyleService {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                styleList.add(new Style(id, name));
+                String style = resultSet.getString("style");
+                styleList.add(new Style(id, style));
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -32,20 +32,20 @@ public class StyleServiceImpl implements IStyleService {
 
     @Override
     public Style findByID(int id) {
-        Style style = null;
+        Style styles = null;
         try {
             PreparedStatement preparedStatement =
                     connection.prepareStatement("select id,name from style where id =?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                String name = resultSet.getString("name");
-                style = new Style(id, name);
+                String style = resultSet.getString("style");
+                styles = new Style(id,style);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return style;
+        return styles;
     }
 
 
@@ -54,8 +54,8 @@ public class StyleServiceImpl implements IStyleService {
         boolean rowCreateStyle = false;
         try {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("insert into style (name)value (?)");
-            preparedStatement.setString(1, style.getName());
+                    connection.prepareStatement("insert into style (style)value (?)");
+            preparedStatement.setString(1, style.getStyle());
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -68,9 +68,9 @@ public class StyleServiceImpl implements IStyleService {
         boolean rowUpdateStyle = false;
         try {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("update style set name =? where id=?");
+                    connection.prepareStatement("update style set style =? where id=?");
             preparedStatement.setInt(1, style.getId());
-            preparedStatement.setString(1, style.getName());
+            preparedStatement.setString(1, style.getStyle());
             rowUpdateStyle = preparedStatement.executeLargeUpdate() > 0;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
