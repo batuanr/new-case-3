@@ -1,10 +1,12 @@
 package service.Type;
 
+import model.Type;
+
 import java.util.List;
 
-public interface ITypeService<T> {
+public interface ITypeService {
 
-    List<T> findAllType();
+    List<Type> findAllType();
 
-    T findTypeById(int id);
+    Type findTypeById(int id);
 }

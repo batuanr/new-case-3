@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TypeService implements ITypeService<Type> {
+public class TypeService implements ITypeService {
 
     Connection connection = ConnectionSingleton.getConnection();
     @Override
@@ -32,7 +32,8 @@ public class TypeService implements ITypeService<Type> {
     public Type findTypeById(int id) {
         Type typeProduct = null;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select  * from Module3.Style where id=?;");
+            PreparedStatement preparedStatement = connection.prepareStatement("select  * from Module3.type where id=?;");
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 String type = resultSet.getString("type");
