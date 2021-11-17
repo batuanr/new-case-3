@@ -36,10 +36,6 @@ public class TypeService implements ITypeService {
 
             preparedStatement.setInt(1, id);
 
-
-            preparedStatement.setInt(1, id);
-
-
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 String type = resultSet.getString("type");
