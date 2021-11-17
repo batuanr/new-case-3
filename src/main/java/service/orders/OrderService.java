@@ -53,8 +53,7 @@ public class OrderService implements IOrderService {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                double amount = resultSet.getDouble("amount");
-                Date order_date = resultSet.getDate("order_date");
+                double amount = resultSet.getDouble("amount");Date order_date = resultSet.getDate("order_date");
                 int customerId = resultSet.getInt("id");
                 Customer customer = iCustomerService.findById(customerId);
                 Boolean status = resultSet.getBoolean("status");
