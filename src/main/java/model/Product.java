@@ -9,6 +9,7 @@ public class Product {
     private Style style;
     private double price;
     private List<Size> sizeList;
+    private List<Orders> ordersList;
 
     public Product() {
     }
@@ -43,6 +44,16 @@ public class Product {
         this.style = style;
         this.price = price;
         this.sizeList = sizeList;
+    }
+
+    public Product(int id, String name, Type type, Style style, double price, List<Size> sizeList, List<Orders> ordersList) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.style = style;
+        this.price = price;
+        this.sizeList = sizeList;
+        this.ordersList = ordersList;
     }
 
     public int getId() {
