@@ -20,7 +20,7 @@ public class CustomerService implements ICustomerService{
             ResultSet rs=preparedStatement.executeQuery();
             while (rs.next()){
                 String name=rs.getString("name");
-                String phone= rs.getString("phone")
+                String phone= rs.getString("phone");
                 String email=rs.getString("email");
                 String pass=rs.getString("pass");
                 Customer customer=new Customer(name,phone,email,pass);
