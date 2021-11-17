@@ -37,7 +37,8 @@ public class ProductService implements IProduct{
                 Style style = styleService.findByID(styleId);
                 double price = resultSet.getDouble("price");
                 List<Size> sizeList = sizeService.findByProductId(id);
-                Product product = new Product(id, name, type, style, price, sizeList);
+                String url=resultSet.getString("url");
+                Product product = new Product(id, name, type, style, price, sizeList,url);
                 productList.add(product);
             }
         } catch (SQLException e) {
@@ -61,8 +62,9 @@ public class ProductService implements IProduct{
                 int styleId = resultSet.getInt("StyleId");
                 Style style = styleService.findByID(styleId);
                 double price = resultSet.getDouble("price");
+                String url =resultSet.getString("url");
                 List<Size> sizeList = sizeService.findByProductId(productId);
-                product = new Product(productId, name, type, style, price, sizeList);
+                product = new Product(productId, name, type, style, price, sizeList,url);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -109,8 +111,9 @@ public class ProductService implements IProduct{
                 int styleId = resultSet.getInt("StyleId");
                 Style style = styleService.findByID(styleId);
                 double price = resultSet.getDouble("price");
+                String url=resultSet.getString("url");
                 List<Size> sizeList = sizeService.findByProductId(id);
-                Product product = new Product(id, name, type, style, price, sizeList);
+                Product product = new Product(id, name, type, style, price, sizeList,url);
                 productList.add(product);
             }
 
@@ -134,8 +137,9 @@ public class ProductService implements IProduct{
                 Type type = typeService.findTypeById(typeID);
                 Style style = styleService.findByID(styleID);
                 double price = resultSet.getDouble("price");
+                String url=resultSet.getString("url");
                 List<Size> sizeList = sizeService.findByProductId(id);
-                Product product = new Product(id, name, type, style, price, sizeList);
+                Product product = new Product(id, name, type, style, price, sizeList,url);
                 productList.add(product);
             }
 
