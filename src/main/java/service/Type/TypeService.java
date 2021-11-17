@@ -33,7 +33,9 @@ public class TypeService implements ITypeService {
         Type typeProduct = null;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("select  * from Module3.type where id=?;");
+
             preparedStatement.setInt(1, id);
+
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 String type = resultSet.getString("type");
