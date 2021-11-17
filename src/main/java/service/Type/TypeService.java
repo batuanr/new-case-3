@@ -1,7 +1,6 @@
-package service.Style;
+package service.Type;
 
 import connection.ConnectionSingleton;
-import model.Style;
 import model.Type;
 
 import java.sql.*;

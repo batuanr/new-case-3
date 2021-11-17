@@ -1,6 +1,5 @@
-package service.Style;
+package service.Type;
 
-import javax.swing.text.Style;
 import java.util.List;
 
 public interface ITypeService<T> {
