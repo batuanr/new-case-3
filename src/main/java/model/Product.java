@@ -10,43 +10,50 @@ public class Product {
     private double price;
     private List<Size> sizeList;
     private List<Orders> ordersList;
+    private String url;
 
     public Product() {
     }
 
-    public Product(String name, Type type, Style style, double price) {
+
+
+    public Product(String name, Type type, Style style, double price,String url) {
         this.name = name;
         this.type = type;
         this.style = style;
         this.price = price;
+        this.url=url;
     }
 
-    public Product(int id, String name, Type type, Style style, double price) {
+    public Product(int id, String name, Type type, Style style, double price,String url) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.style = style;
         this.price = price;
+        this.url=url;
     }
 
-    public Product(String name, Type type, Style style, double price, List<Size> sizeList) {
+    public Product(String name, Type type, Style style, double price, List<Size> sizeList,String url) {
         this.name = name;
         this.type = type;
         this.style = style;
         this.price = price;
         this.sizeList = sizeList;
+        this.url=url;
     }
 
-    public Product(int id, String name, Type type, Style style, double price, List<Size> sizeList) {
+    public Product(int id, String name, Type type, Style style, double price, List<Size> sizeList,String url) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.style = style;
         this.price = price;
         this.sizeList = sizeList;
+        this.url=url;
     }
 
-    public Product(int id, String name, Type type, Style style, double price, List<Size> sizeList, List<Orders> ordersList) {
+    public Product(int id, String name, Type type, Style style, double price, List<Size> sizeList, List<Orders> ordersList,String url) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -54,6 +61,7 @@ public class Product {
         this.price = price;
         this.sizeList = sizeList;
         this.ordersList = ordersList;
+        this.url=url;
     }
 
     public int getId() {
@@ -95,6 +103,14 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
 
     public List<Size> getSizeList() {
         return sizeList;
