@@ -1,25 +1,18 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Orders {
-    private int id;
+    private  int id;
     private double amount;
-    private Date order_date;
-    private Customer customer;
-    private List<Product> productList;
-    private boolean status;
+    Date order_date;
+    Customer customer;
+    List<Product> productList;
+    boolean status ;
 
     public Orders() {
-    }
-
-    public Orders(int id, double amount, Date order_date, Customer customer, boolean status) {
-        this.id = id;
-        this.amount = amount;
-        this.order_date = order_date;
-        this.customer = customer;
-        this.status = status;
     }
 
     public Orders(int id, double amount, Date order_date, Customer customer, List<Product> productList, boolean status) {
@@ -29,6 +22,14 @@ public class Orders {
         this.customer = customer;
         this.productList = productList;
         this.status = status;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 
     public int getId() {
@@ -61,14 +62,6 @@ public class Orders {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public List<Product> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
     }
 
     public boolean isStatus() {
