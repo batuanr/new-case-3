@@ -31,6 +31,14 @@ public class Orders {
         this.status = status;
     }
 
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
+
     public int getId() {
         return id;
     }
@@ -61,14 +69,6 @@ public class Orders {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public List<Product> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
     }
 
     public boolean isStatus() {
