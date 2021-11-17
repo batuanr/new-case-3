@@ -80,11 +80,30 @@ public class OrderDetailServiceImpl implements IOrderDetailService{
     }
         @Override
     public boolean update(OrderDetail orderDetail) {
-        row
-    }
+        boolean rowUpdateOrderDetail = false;
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("update orderdetail set productidID =?,orderID=?,quantity=? where id=?");
+            preparedStatement.setInt(1,orderDetail.getProduct().getId());
+            preparedStatement.setInt(2,orderDetail.getOrders().);
+            preparedStatement.setInt(3,orderDetail.getQuantity());
+            rowUpdateOrderDetail =preparedStatement.executeUpdate()>0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return rowUpdateOrderDetail;
+        }
 
     @Override
     public boolean delete(int id) {
-        return false;
+      boolean rowDeleteOrderDetail=false;
+      try {
+          PreparedStatement preparedStatement = connection.prepareStatement("delete from orderdetail where id=?");
+          preparedStatement.setInt(1,id);
+          rowDeleteOrderDetail= preparedStatement.executeUpdate()>0;
+      } catch (SQLException throwables) {
+          throwables.printStackTrace();
+      }
+      return rowDeleteOrderDetail;
     }
 }
