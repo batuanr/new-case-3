@@ -72,7 +72,6 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="#" class="nav-link px-2 text-white">bảng quy đổi size</a></li>
             </ul>
 
 
