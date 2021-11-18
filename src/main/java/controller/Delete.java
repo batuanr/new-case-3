@@ -28,7 +28,7 @@ public class Delete extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         productService.delete(id);
         try {
-            response.sendRedirect("/management");
+            response.sendRedirect("/admin");
         } catch (IOException e) {
             e.printStackTrace();
         }
