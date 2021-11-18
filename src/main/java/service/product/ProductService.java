@@ -101,7 +101,7 @@ public class ProductService implements IProduct{
     public List<Product> findByTypeID(int typeID) {
         List<Product> productList = new ArrayList<>();
         try {
-            PreparedStatement statement = connection.prepareStatement("select P.id, P.name, P.styleID, P.price from Product P join Type T on T.id = P.typeID where typeID = ?");
+            PreparedStatement statement = connection.prepareStatement("select P.id, P.name, P.styleID, P.price,P.url from Product P join Type T on T.id = P.typeID where typeID = ?");
             statement.setInt(1, typeID);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
@@ -127,7 +127,7 @@ public class ProductService implements IProduct{
     public List<Product> findByStyleID(int styleID) {
         List<Product> productList = new ArrayList<>();
         try {
-            PreparedStatement statement = connection.prepareStatement("select P.id, P.name, P.typeID, P.price from Product P join Style S on S.id = P.styleID where styleID = ?");
+            PreparedStatement statement = connection.prepareStatement("select P.id, P.name, P.typeID, P.price,P.url from Product P join Style S on S.id = P.styleID where styleID = ?");
             statement.setInt(1, styleID);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){

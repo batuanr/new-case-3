@@ -47,6 +47,27 @@ public class CustomerService implements ICustomerService{
         }
     }
 
+    public  boolean checkAccount(String email,String pass){
+        boolean check=false;
+        Customer customer=null;
+        try {
+            PreparedStatement preparedStatement=connection.prepareStatement("select * from customer where email=? and pass=?");
+            preparedStatement.setString(1,email);
+            preparedStatement.setString(2,pass);
+            ResultSet rs=preparedStatement.executeQuery();
+            if(rs.next()){
+                String name=rs.getString("name");
+                String phone=rs.getString("phone");
+                customer=new Customer(name,phone,email,pass);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(customer!=null){
+            check=true;
+        }
+        return check;
+    }
     @Override
     public Customer findById(int id) {
         Customer customer=null;
@@ -68,6 +89,25 @@ public class CustomerService implements ICustomerService{
         return customer;
     }
 
+    public Customer findByEmail(String email){
+        Customer customer=null;
+        try {
+            PreparedStatement preparedStatement=connection.prepareStatement("select * from customer where email=?;");
+            preparedStatement.setString(1,email);
+            ResultSet resultSet=preparedStatement.executeQuery();
+            if(resultSet.next()){
+                int id=resultSet.getInt("id");
+                String name=resultSet.getString("name");
+                String phone=resultSet.getString("phone");
+                String pass=resultSet.getString("pass");
+                customer= new Customer(id,name,phone,email,pass);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customer;
+
+    }
     @Override
     public void update(int id, Customer customer) {
         try {
