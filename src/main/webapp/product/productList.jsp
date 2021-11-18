@@ -72,7 +72,6 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="#" class="nav-link px-2 text-white">bảng quy đổi size</a></li>
             </ul>
 
 
@@ -92,7 +91,7 @@
     <c:forEach items="${listProduct}" var="p">
         <div class="product-card">
             <img src="${p.url}" class="card-img-top" alt="ảnh ${p.name}" style="width: 150px;height: 150px">
-            <h3 class="product-title">${p.name}</h3>
+            <a href="/products?action=detail&email=${email}&productId=${p.id}"><h3 class="product-title">${p.name}</h3></a>
             <span class="product-price">${p.price}</span>
         </div>
     </c:forEach>
