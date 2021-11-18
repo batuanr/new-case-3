@@ -11,6 +11,7 @@
     <title>$Title$</title>
   </head>
   <body>
-  <a href="customer/customerLogin.jsp">dsad</a>
+  <a href="customer/customerLogin.jsp">dsad</a><br>
+  <a href="admin/adminLogin.jsp">admin</a>
   </body>
 </html>

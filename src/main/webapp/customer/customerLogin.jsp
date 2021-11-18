@@ -156,6 +156,11 @@
             <div class="col-lg-12 login-form">
                 <div class="col-lg-12 login-form">
                     <form action="/customers?action=login" method="post">
+                        <div>
+                            <c:if test='${requestScope["mess"] != null}'>
+                                <span class="message" style="color: red">${requestScope["mess"]}</span>
+                            </c:if>
+                        </div>
                         <div class="form-group">
                             <label class="form-control-label">EMAIL</label>
                             <input type="text" class="form-control" name="email">

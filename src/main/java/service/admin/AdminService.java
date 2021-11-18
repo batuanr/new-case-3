@@ -2,6 +2,7 @@ package service.admin;
 
 import connection.ConnectionSingleton;
 import model.Admin;
+import model.Customer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -29,6 +30,27 @@ public class AdminService implements IAdminService{
             e.printStackTrace();
         }
         return adminList;
+    }
+    public boolean checkAccount(String account,String pass){
+        boolean check=false;
+        Admin admin=null;
+        try {
+            PreparedStatement preparedStatement=connection.prepareStatement("select * from admin where account=? and pass=?");
+            preparedStatement.setString(1,account);
+            preparedStatement.setString(2,pass);
+            ResultSet rs=preparedStatement.executeQuery();
+            if(rs.next()){
+                String account1=rs.getString("account");
+                String pass1=rs.getString("pass");
+                admin=new Admin(account1,pass1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(admin!=null){
+            check=true;
+        }
+        return check;
     }
 
     @Override

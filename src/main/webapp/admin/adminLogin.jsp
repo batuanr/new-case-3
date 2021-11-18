@@ -150,19 +150,24 @@
                 <i class="fa fa-key" aria-hidden="true"></i>
             </div>
             <div class="col-lg-12 login-title">
-                ĐĂNG NHẬP
+                ADMIN
             </div>
 
             <div class="col-lg-12 login-form">
                 <div class="col-lg-12 login-form">
-                    <form>
+                    <form action="/admin?action=login" method="post">
+                        <div>
+                            <c:if test='${requestScope["mess"] != null}'>
+                                <span class="message" style="color: red">${requestScope["mess"]}</span>
+                            </c:if>
+                        </div>
                         <div class="form-group">
                             <label class="form-control-label">USERNAME</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="account">
                         </div>
                         <div class="form-group">
                             <label class="form-control-label">PASSWORD</label>
-                            <input type="password" class="form-control">
+                            <input type="password" class="form-control" name="pass">
                         </div>
 
                         <div class="col-lg-12 loginbttm">
@@ -170,8 +175,6 @@
                             </div>
                             <div class="col-lg-6 login-btm login-button">
                                 <button type="submit" class="btn btn-outline-primary">LOGIN</button>
-                                <button type="button" class="btn btn-outline-primary"><a
-                                        href="register.jsp">register</a></button>
                             </div>
                         </div>
                     </form>
