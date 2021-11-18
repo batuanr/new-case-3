@@ -11,5 +11,5 @@ public interface IProduct {
     List<Product> findByTypeID(int typeID);
     List<Product> findByStyleID(int styleID);
     void delete(int id);
-    void edit(int id, Product product);
+    void edit(int id, Product product, int[] sizes);
 }
