@@ -76,15 +76,16 @@ public class ProductService implements IProduct{
     public void save(Product product, int[] sizeList) {
         int productID = 0;
         try {
-            PreparedStatement statement = connection.prepareStatement("insert into Product (name , typeID, styleID, price) value (? , ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement("insert into Product (name , typeID, styleID, price, url) value (? , ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, product.getName());
             statement.setInt(2, product.getType().getId());
             statement.setInt(3, product.getStyle().getId());
             statement.setDouble(4, product.getPrice());
+            statement.setString(5, product.getUrl());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             while (resultSet.next()){
-                productID = resultSet.getInt("id");
+                productID = resultSet.getInt(1);
             }
             PreparedStatement statement1 = connection.prepareStatement("insert into ProductSize (PRODUCTID, SIZEID) value (? , ?)");
             for (int size: sizeList){
@@ -152,12 +153,13 @@ public class ProductService implements IProduct{
     @Override
     public void delete(int id) {
         try {
-            PreparedStatement statement = connection.prepareStatement("delete from Product where id = ?");
-            statement.setInt(1, id);
-            statement.executeUpdate();
+
             PreparedStatement statement1 = connection.prepareStatement("delete from ProductSize where productID = ?");
             statement1.setInt(1, id);
             statement1.executeUpdate();
+            PreparedStatement statement = connection.prepareStatement("delete from Product where id = ?");
+            statement.setInt(1, id);
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

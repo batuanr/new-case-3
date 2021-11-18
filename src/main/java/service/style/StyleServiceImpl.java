@@ -35,7 +35,7 @@ public class StyleServiceImpl implements IStyleService {
         Style styles = null;
         try {
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("select id,name from style where id =?");
+                    connection.prepareStatement("select id, style from style where id =?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
