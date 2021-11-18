@@ -3,11 +3,7 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
-<<<<<<< HEAD
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/Manage.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
-=======
-        <entry key="file://$PROJECT_DIR$/src/main/webapp/admin/adminLogin.jsp" value="file://$PROJECT_DIR$/src/main/webapp/admin" />
->>>>>>> 369d141b977251b64f2e98eeb4eaf5b08e20febd
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/new/product.jsp" value="file://$PROJECT_DIR$/src/main/webapp/new" />
       </map>
     </option>
   </component>

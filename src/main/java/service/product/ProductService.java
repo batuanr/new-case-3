@@ -166,7 +166,7 @@ public class ProductService implements IProduct{
     }
 
     @Override
-    public void edit(int id, Product product) {
+    public void edit(int id, Product product, int[] sizes) {
         try {
             PreparedStatement statement = connection.prepareStatement("update Product set name = ? , typeID = ?, styleID = ?, price = ?where id = ?");
             statement.setString(1, product.getName());
@@ -178,13 +178,10 @@ public class ProductService implements IProduct{
             PreparedStatement statement1 = connection.prepareStatement("delete from ProductSize where productID = ?");
             statement1.setInt(1, id);
             statement1.executeUpdate();
-            List<Size> sizeList = sizeService.findByProductId(id);
-            int[] size = new int[sizeList.size()];
-            for (int i = 0; i < sizeList.size(); i++) {
-                size[i] = sizeList.get(i).getId();
-            }
+
+
             PreparedStatement statement2 = connection.prepareStatement("insert into ProductSize (productID, sizeID) value (?, ?)");
-            for (int size2: size){
+            for (int size2: sizes){
                 statement2.setInt(1, id);
                 statement2.setInt(2, size2);
                 statement2.executeUpdate();
