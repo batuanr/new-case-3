@@ -14,6 +14,12 @@ public class Orders {
     public Orders() {
     }
 
+    public Orders(int id, Customer customer, boolean status) {
+        this.id = id;
+        this.customer = customer;
+        this.status = status;
+    }
+
     public Orders(int id, double amount, Date order_date, Customer customer, boolean status) {
         this.id = id;
         this.amount = amount;

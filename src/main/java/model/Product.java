@@ -64,6 +64,9 @@ public class Product {
         this.url=url;
     }
 
+    public Product(String name, double price, Style style, Type type) {
+    }
+
     public int getId() {
         return id;
     }

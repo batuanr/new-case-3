@@ -1,7 +1,12 @@
 package controller;
 
-import model.Product;
-import model.Size;
+import model.*;
+import service.customer.CustomerService;
+import service.customer.ICustomerService;
+import service.orderDetail.IOrderDetailService;
+import service.orderDetail.OrderDetailServiceImpl;
+import service.orders.IOrderService;
+import service.orders.OrderService;
 import service.product.ProductService;
 import service.size.SizeService;
 
@@ -16,6 +21,9 @@ import java.util.List;
 public class ProductServlet extends HttpServlet {
     SizeService sizeService = new SizeService();
     ProductService productService = new ProductService();
+    ICustomerService customerService = new CustomerService();
+    IOrderService orderService = new OrderService();
+    IOrderDetailService orderDetailService = new OrderDetailServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,7 +41,9 @@ public class ProductServlet extends HttpServlet {
             case "detail":
                 fromProductDetail(request, response);
                 break;
-
+            case "addOrder":
+                addOrder(request, response);
+                break;
             default:
 
         }
@@ -86,6 +96,21 @@ public class ProductServlet extends HttpServlet {
         }
 
     }
+    private void addOrder(HttpServletRequest request, HttpServletResponse response){
+        String email = request.getParameter("email");
+        Customer customer = customerService.findByEmail(email);
+        Orders orders = orderService.getOrder(customer);
+        int id = Integer.parseInt(request.getParameter("id"));
+        Product product = productService.findById(id);
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        OrderDetail orderDetail = new OrderDetail(product, orders, quantity);
+        orderDetailService.create(orderDetail);
+        try {
+            response.sendRedirect("/products");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @Override
@@ -95,7 +120,7 @@ public class ProductServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
-            case "":
+//            case "addOrder": addOrder(request, response);
             default:
 
         }

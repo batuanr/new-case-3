@@ -10,4 +10,5 @@ public interface ICustomerService {
     Customer findById(int id);
     void update(int id,Customer customer);
     void delete(int id);
+    public Customer findByEmail(String email);
 }

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDetailServiceImpl implements IOrderDetailService{
-    private static Connection connection = ConnectionSingleton.getConnection();
+    private  Connection connection = ConnectionSingleton.getConnection();
     IProduct productService = new ProductService();
     IOrderService orderService = new OrderService();
 
@@ -109,5 +109,29 @@ public class OrderDetailServiceImpl implements IOrderDetailService{
           throwables.printStackTrace();
       }
       return rowDeleteOrderDetail;
+    }
+
+    @Override
+    public List<OrderDetail> findByOrder(int customerId) {
+        List<OrderDetail> orderDetails = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("select OD.productID, OD.quantity, O.id from Orders O\n" +
+                    "join OrderDetail OD on O.id = OD.orderID\n" +
+                    "join Customer C on C.id = O.customerId where customerId = ? and O.status = false");
+            statement.setInt(1, customerId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                int orderID = resultSet.getInt("id");
+                int productId = resultSet.getInt("productID");
+                int quantity = resultSet.getInt("quantity");
+                Product product = productService.findById(productId);
+                Orders orders = orderService.findOrderById(orderID);
+                OrderDetail orderDetail = new OrderDetail(product, orders, quantity);
+                orderDetails.add(orderDetail);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orderDetails;
     }
 }

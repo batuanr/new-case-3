@@ -104,4 +104,34 @@ public class OrderService implements IOrderService {
         }
 
     }
+
+    @Override
+    public Orders getOrder(Customer customer) {
+        Orders orders = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement("select O.id, O.status from Orders O join Customer C on C.id = O.customerId where C.id = ? and O.status = false");
+            statement.setInt(1, customer.getId());
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()){
+                int id = resultSet.getInt("id");
+                boolean status = resultSet.getBoolean("status");
+                orders = new Orders(id, customer, status);
+                return orders;
+            }
+            else{
+                PreparedStatement statement1 = connection.prepareStatement("insert into Orders (customerId, status) value (?, ?)", Statement.RETURN_GENERATED_KEYS);
+                statement1.setInt(1, customer.getId());
+                statement1.setBoolean(2, false);
+                statement1.executeUpdate();
+                ResultSet resultSet1 = statement1.getGeneratedKeys();
+                while (resultSet1.next()){
+                    int id  = resultSet1.getInt(1);
+                    orders = new Orders(id, customer, false);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orders;
+    }
 }

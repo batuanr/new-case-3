@@ -53,7 +53,7 @@
                 <a href="/customers?action=info&email=${email}">
                     <button type="button" class="btn btn-outline-light me-2">Thông tin cá nhân</button>
                 </a>
-                <a href="/customers?action=order&email=${email}">
+                <a href="/orderList?email=${email}">
                     <button type="button" class="btn btn-outline-light me-2">Giỏ hàng</button>
                 </a>
             </div>

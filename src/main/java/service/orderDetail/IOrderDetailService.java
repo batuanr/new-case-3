@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface IOrderDetailService {
     List<OrderDetail> showAll();
+    List<OrderDetail> findByOrder(int customerId);
     OrderDetail findByID(int id);
 
     boolean create(OrderDetail orderDetail);

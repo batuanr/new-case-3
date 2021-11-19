@@ -2,8 +2,6 @@ package controller;
 
 import model.Customer;
 import model.OrderDetail;
-import model.Orders;
-import model.Product;
 import service.customer.CustomerService;
 import service.customer.ICustomerService;
 import service.orderDetail.IOrderDetailService;
@@ -16,33 +14,33 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "addOrder", value = "/addOrder")
-public class addOrder extends HttpServlet {
+@WebServlet(name = "orderList", value = "/orderList")
+public class orderList extends HttpServlet {
     ProductService productService = new ProductService();
     ICustomerService customerService = new CustomerService();
     IOrderService orderService = new OrderService();
     IOrderDetailService orderDetailService = new OrderDetailServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        addOrder(request, response);
+listOrder(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        addOrder(request, response);
+        listOrder(request, response);
     }
-    private void addOrder(HttpServletRequest request, HttpServletResponse response){
+    private void listOrder(HttpServletRequest request, HttpServletResponse response){
         String email = request.getParameter("email");
         Customer customer = customerService.findByEmail(email);
-        Orders orders = orderService.getOrder(customer);
-        int id = Integer.parseInt(request.getParameter("id"));
-        Product product = productService.findById(id);
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        OrderDetail orderDetail = new OrderDetail(product, orders, quantity);
-        orderDetailService.create(orderDetail);
+        List<OrderDetail> orderDetails = orderDetailService.findByOrder(customer.getId());
+        request.setAttribute("list", orderDetails);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("orders/orderList.jsp");
         try {
-            response.sendRedirect("management");
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

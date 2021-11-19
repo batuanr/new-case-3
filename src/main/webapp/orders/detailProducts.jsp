@@ -187,23 +187,30 @@
     <div class="product-info">
         <div class="product-text">
             <h1>${product.name}</h1>
-            <h2>by Gruop Ke Huy Diet Module3</h2>
+            <h2>by Group Ke Huy Diet Module3</h2>
             <p><span>${product.price}</span>$</p>
         </div>
-        <div style="text-align: center">
-            <select name="size" id="size">
-                <c:forEach items="${sizeList}" var="s" >
-                    <option value="${s.size}">${s.size}</option>
-                </c:forEach>
-            </select>
-        </div>
-        <div  style="text-align: center">
-            <label>Quantity</label>
-            <input type="text" name="quantity">
-        </div>
-        <div class="product-price-btn">
-            <button type="button">Them Vao Gio Hang</button>
-        </div>
+        <form action="/addOrder">
+            <div style="text-align: center">
+                <select name="size" id="size">
+                    <c:forEach items="${sizeList}" var="s" >
+                        <option value="${s.id}">${s.size}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div  style="text-align: center">
+                <label>Quantity</label>
+                <input type="number" name="quantity">
+                <input type="text" name="email" value="${email}" hidden>
+                <input type="text" name="id" value="${product.id}" hidden>
+
+            </div>
+            <div class="product-price-btn">
+                <button type="submit">Them Vao Gio Hang</button>
+
+            </div>
+        </form>
+
     </div>
 </div>
 
