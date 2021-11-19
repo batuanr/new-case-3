@@ -1,5 +1,6 @@
 package controller;
 
+<<<<<<< HEAD
 import model.*;
 import service.customer.CustomerService;
 import service.customer.ICustomerService;
@@ -7,6 +8,10 @@ import service.orderDetail.IOrderDetailService;
 import service.orderDetail.OrderDetailServiceImpl;
 import service.orders.IOrderService;
 import service.orders.OrderService;
+=======
+import model.Product;
+import model.Size;
+>>>>>>> d3ae2b4675b75172344d88aa7404385939236d4a
 import service.product.ProductService;
 import service.size.SizeService;
 
@@ -21,9 +26,12 @@ import java.util.List;
 public class ProductServlet extends HttpServlet {
     SizeService sizeService = new SizeService();
     ProductService productService = new ProductService();
+<<<<<<< HEAD
     ICustomerService customerService = new CustomerService();
     IOrderService orderService = new OrderService();
     IOrderDetailService orderDetailService = new OrderDetailServiceImpl();
+=======
+>>>>>>> d3ae2b4675b75172344d88aa7404385939236d4a
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,10 +48,14 @@ public class ProductServlet extends HttpServlet {
                 break;
             case "detail":
                 fromProductDetail(request, response);
+<<<<<<< HEAD
                 break;
             case "addOrder":
                 addOrder(request, response);
+=======
+>>>>>>> d3ae2b4675b75172344d88aa7404385939236d4a
                 break;
+
             default:
 
         }
@@ -120,7 +132,11 @@ public class ProductServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+<<<<<<< HEAD
 //            case "addOrder": addOrder(request, response);
+=======
+            case "":
+>>>>>>> d3ae2b4675b75172344d88aa7404385939236d4a
             default:
 
         }
